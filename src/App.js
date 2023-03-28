@@ -10,16 +10,17 @@ function App() {
   const [currentForecast, setCurrentForecast] = useState(null);
 
   const handleSearchChange = (searchData) => {
-    console.log(searchData);
-    const [lat, lon] = searchData.value.split("");
+    //console.log(searchData);
+    const [lat, lon] = searchData.value.split(" ");
+    console.log(searchData.value);
 
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?q=${searchData.label}&lat=${lat}&lon=${lon}&units=metric`,
+      `${WEATHER_API_URL}/city/latlon/${lat}/${lon}`,
       weatherOptions
     );
 
     const currentForecastFetch = fetch(
-      `${WEATHER_API_URL}/forecast?q=${searchData.label}&lat=${lat}&lon=${lon}&units=metric`,
+      `${WEATHER_API_URL}/city/fivedaysforcast/${lat}/${lon}`,
       weatherOptions
     );
 
